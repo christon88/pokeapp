@@ -1,5 +1,8 @@
 import styles from "./main-page.module.scss";
+import { useGetPokemonByNameQuery } from "./api";
 
 export const MainPage = () => {
-  return <div className={styles.mainPage}>Main page</div>;
+  const { data } = useGetPokemonByNameQuery("bulbasaur");
+
+  return <div className={styles.mainPage}>{data?.name}</div>;
 };
