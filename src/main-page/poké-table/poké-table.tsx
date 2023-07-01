@@ -5,6 +5,7 @@ import { TableColumns } from "./types";
 import { IPokemon } from "../../types/Pokemon/Pokemon";
 import styles from "./poké-table.module.scss";
 import { defaultColumns } from "./common";
+import { Checkbox } from "@mui/material";
 type Props = { pokemons: IPokemon[] };
 
 export const PokéTable: React.FC<Props> = ({ pokemons }) => {
@@ -27,10 +28,9 @@ export const PokéTable: React.FC<Props> = ({ pokemons }) => {
     <div className={styles.pokeTable}>
       <div className={styles.tableControls}>
         {Object.entries(columns).map(([key, column]) => (
-          <label>
+          <label key={column.field}>
             {column.displayName}
-            <input
-              type="checkbox"
+            <Checkbox
               checked={column.isVisible}
               onChange={(event) =>
                 updateColumnVisibility(key, event.currentTarget.checked)
