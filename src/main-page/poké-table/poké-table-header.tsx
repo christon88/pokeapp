@@ -6,10 +6,10 @@ export const PokéTableHeader: React.FC<Props> = ({ columns }) => {
   return (
     <thead>
       <tr>
-        {Object.entries(columns)
-          .filter(([_, visible]) => visible)
-          .map(([name]) => (
-            <th key={name}>{name}</th>
+        {Object.values(columns)
+          .filter((column) => column.isVisible)
+          .map((column) => (
+            <th key={column.displayName}>{column.displayName}</th>
           ))}
       </tr>
     </thead>

@@ -3,11 +3,11 @@ import { useGetPokemonByNameQuery } from "./api";
 import { PokéTable } from "./poké-table/poké-table";
 
 export const MainPage = () => {
-  const { data, isLoading } = useGetPokemonByNameQuery("bulbasaur");
+  const { data } = useGetPokemonByNameQuery("bulbasaur");
 
   return (
     <div className={styles.mainPage}>
-      {!isLoading && data && <PokéTable pokemons={[data]} />}
+      {data && <PokéTable pokemons={[data]} />}
     </div>
   );
 };
