@@ -2,6 +2,7 @@ import { IPokemon } from "../../types/Pokemon/Pokemon";
 import { Fields } from "./types";
 import styles from "./poké-table.module.scss";
 import { assertExhaustive } from "../../utils/assert-exhaustive";
+import { TableCell } from "@mui/material";
 
 type Props = { field: keyof Fields; pokemon: IPokemon };
 
@@ -12,24 +13,24 @@ export const PokéCell: React.FC<Props> = ({ field, pokemon }) => {
     field === "height" ||
     field === "weight"
   )
-    return <td>{pokemon[field]}</td>;
+    return <TableCell>{pokemon[field]}</TableCell>;
 
   if (field === "sprites")
     return (
-      <td>
+      <TableCell>
         <img src={pokemon.sprites.front_default} />
-      </td>
+      </TableCell>
     );
 
   if (field === "types")
     return (
-      <td>
+      <TableCell>
         <div className={styles.typesCell}>
           {pokemon.types.map((type) => (
             <span key={type.type.name}>{type.type.name}</span>
           ))}
         </div>
-      </td>
+      </TableCell>
     );
 
   return assertExhaustive(field);

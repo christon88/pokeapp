@@ -5,7 +5,7 @@ import { TableColumns } from "./types";
 import { IPokemon } from "../../types/Pokemon/Pokemon";
 import styles from "./poké-table.module.scss";
 import { defaultColumns } from "./common";
-import { Checkbox } from "@mui/material";
+import { Checkbox, Table, TableBody } from "@mui/material";
 type Props = { pokemons: IPokemon[] };
 
 export const PokéTable: React.FC<Props> = ({ pokemons }) => {
@@ -40,9 +40,9 @@ export const PokéTable: React.FC<Props> = ({ pokemons }) => {
           </label>
         ))}
       </div>
-      <table>
+      <Table>
         <PokéTableHeader columns={columns} />
-        <tbody>
+        <TableBody>
           {pokemons.map((pokemon) => (
             <PokéTableRow
               columns={columns}
@@ -50,8 +50,8 @@ export const PokéTable: React.FC<Props> = ({ pokemons }) => {
               key={pokemon.id}
             />
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 };
