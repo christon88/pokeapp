@@ -24,7 +24,7 @@ export const PokéTable: React.FC<Props> = ({ pokemons }) => {
   }
 
   return (
-    <div>
+    <div className={styles.pokeTable}>
       <div className={styles.tableControls}>
         {Object.entries(columns).map(([key, column]) => (
           <label>
