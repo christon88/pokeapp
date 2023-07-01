@@ -3,6 +3,7 @@ import { Fields } from "./types";
 import styles from "./poké-table.module.scss";
 import { assertExhaustive } from "../../utils/assert-exhaustive";
 import { TableCell } from "@mui/material";
+import { capitalize } from "../../utils/strings";
 
 type Props = { field: keyof Fields; pokemon: IPokemon };
 
@@ -13,7 +14,7 @@ export const PokéCell: React.FC<Props> = ({ field, pokemon }) => {
     field === "height" ||
     field === "weight"
   )
-    return <TableCell>{pokemon[field]}</TableCell>;
+    return <TableCell>{capitalize(pokemon[field].toString())}</TableCell>;
 
   if (field === "sprites")
     return (
