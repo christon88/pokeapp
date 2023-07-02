@@ -1,5 +1,4 @@
-import { IPokemon } from "../../types/Pokemon/Pokemon";
-
+import * as PokeAPI from "pokeapi-typescript";
 export type TableColumn = {
   displayName: string;
   isVisible: boolean;
@@ -9,6 +8,6 @@ export type TableColumn = {
 export type TableColumns = Record<string, TableColumn>;
 
 export type Fields = Pick<
-  IPokemon,
+  PokeAPI.IPokemon,
   "name" | "sprites" | "id" | "weight" | "height" | "types"
 >;

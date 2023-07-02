@@ -5,10 +5,17 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  overflow: hidden;
+  background-color: rgba($color: #fff, $alpha: 0.95);
 }
 .tableControls {
   display: flex;
   gap: 16px;
+}
+
+.tableContainer {
+  overflow-y: scroll;
+  display: flex;
 }
 
 .typesCell {

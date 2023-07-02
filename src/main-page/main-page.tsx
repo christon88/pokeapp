@@ -1,13 +1,16 @@
 import styles from "./main-page.module.scss";
-import { useGetPokemonByNameQuery } from "./api";
+import { useListPokemonQuery } from "./api";
 import { PokéTable } from "./poké-table/poké-table";
+import { useState } from "react";
+import { isDefined } from "../utils/is-defined";
 
 export const MainPage = () => {
-  const { data } = useGetPokemonByNameQuery("bulbasaur");
+  const [offset, setOffset] = useState(0);
+  const { data } = useListPokemonQuery({ limit: 20, offset: offset });
 
   return (
     <div className={styles.mainPage}>
-      {data && <PokéTable pokemons={[data]} />}
+      {data && <PokéTable resources={data.results.filter(isDefined)} />}
     </div>
   );
 };

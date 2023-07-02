@@ -2,18 +2,19 @@ import { useState } from "react";
 import { PokéTableRow } from "./poké-table-row";
 import { PokéTableHeader } from "./poké-table-header";
 import { TableColumns } from "./types";
-import { IPokemon } from "../../types/Pokemon/Pokemon";
 import styles from "./poké-table.module.scss";
 import { defaultColumns } from "./common";
 import { Checkbox, Table, TableBody } from "@mui/material";
-type Props = { pokemons: IPokemon[] };
+import * as PokeApi from "pokeapi-typescript";
 
-export const PokéTable: React.FC<Props> = ({ pokemons }) => {
+type Props = { resources: PokeApi.IApiResource<PokeApi.IPokemon>[] };
+
+export const PokéTable: React.FC<Props> = ({ resources }) => {
   const [columns, setColumns] = useState<TableColumns>(defaultColumns);
 
   function updateColumnVisibility(
     columnName: keyof typeof columns,
-    isVisible: boolean
+    isVisible: boolean,
   ) {
     setColumns((prev) => ({
       ...prev,
@@ -40,18 +41,20 @@ export const PokéTable: React.FC<Props> = ({ pokemons }) => {
           </label>
         ))}
       </div>
-      <Table>
-        <PokéTableHeader columns={columns} />
-        <TableBody>
-          {pokemons.map((pokemon) => (
-            <PokéTableRow
-              columns={columns}
-              pokemon={pokemon}
-              key={pokemon.id}
-            />
-          ))}
-        </TableBody>
-      </Table>
+      <div className={styles.tableContainer}>
+        <Table>
+          <PokéTableHeader columns={columns} />
+          <TableBody>
+            {resources.map((resource) => (
+              <PokéTableRow
+                columns={columns}
+                resource={resource}
+                key={resource.url}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };

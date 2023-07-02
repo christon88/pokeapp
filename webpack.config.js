@@ -6,6 +6,7 @@ const { EsbuildPlugin } = require("esbuild-loader");
 const postcssNormalize = require("postcss-normalize");
 const publicPath = "/";
 const srcPath = path.resolve(__dirname, "src");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 module.exports = function (_, { mode }) {
   const isProduction = mode === "production";
@@ -50,7 +51,19 @@ module.exports = function (_, { mode }) {
           },
         },
         {
-          test: /\.(ts|tsx)$/,
+          test: /\.(ts)$/,
+          use: [
+            {
+              loader: "esbuild-loader",
+              options: {
+                loader: "ts",
+                target: "es2015",
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(tsx)$/,
           use: [
             {
               loader: "esbuild-loader",
@@ -84,13 +97,16 @@ module.exports = function (_, { mode }) {
         filename: "static/css/[name].[contenthash:8].css",
         chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
       }),
+      new ForkTsCheckerWebpackPlugin({}),
     ],
+    watchOptions: {
+      ignored: ["**/node_modules", "**/types"],
+    },
   };
 };
 
 const getStyleLoaders = (cssOptions) => [
-  // NOTE: _Everything_ crashes unless `esModule: false` 🤷‍♂️️
-  { loader: MiniCssExtractPlugin.loader },
+  { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
   {
     loader: require.resolve("css-loader"),
     options: cssOptions,

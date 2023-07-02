@@ -1,11 +1,10 @@
-import { IPokemon } from "../../types/Pokemon/Pokemon";
 import { Fields } from "./types";
 import styles from "./poké-table.module.scss";
 import { assertExhaustive } from "../../utils/assert-exhaustive";
 import { TableCell } from "@mui/material";
 import { capitalize } from "../../utils/strings";
-
-type Props = { field: keyof Fields; pokemon: IPokemon };
+import * as PokeApi from "pokeapi-typescript";
+type Props = { field: keyof Fields; pokemon: PokeApi.IPokemon };
 
 export const PokéCell: React.FC<Props> = ({ field, pokemon }) => {
   if (
