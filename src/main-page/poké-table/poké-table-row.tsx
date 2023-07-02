@@ -9,15 +9,19 @@ type Props = {
 };
 
 export const PokéTableRow: React.FC<Props> = ({ columns, resource }) => {
-  const { data: pokemon } = useGetPokemonByUrlQuery(resource.url);
+  const { data: pokemon, isLoading } = useGetPokemonByUrlQuery(resource.url);
 
-  if (pokemon === undefined) return null;
   return (
     <TableRow>
       {Object.values(columns)
         .filter((column) => column.isVisible)
         .map((column) => (
-          <PokéCell key={column.field} field={column.field} pokemon={pokemon} />
+          <PokéCell
+            key={column.field}
+            field={column.field}
+            pokemon={pokemon}
+            loading={isLoading}
+          />
         ))}
     </TableRow>
   );

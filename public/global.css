@@ -3,6 +3,9 @@ html {
   overflow: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body {
+  margin: 0;
+}
 
 #root {
   height: 100vh;
