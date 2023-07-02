@@ -1,5 +1,5 @@
 import { capitalize } from "./strings";
-import { expect, test } from "../test/assertions";
+import { expect, test } from "../../test/assertions";
 
 test("Capitalize", () => {
   expect(capitalize("foo")).toEqual("Foo");

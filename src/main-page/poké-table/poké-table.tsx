@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { PokéTableRow } from "./poké-table-row";
 import { PokéTableHeader } from "./poké-table-header";
 import { TableColumns } from "./types";
@@ -6,11 +5,15 @@ import styles from "./poké-table.module.scss";
 import { defaultColumns } from "./common";
 import { Checkbox, Table, TableBody } from "@mui/material";
 import * as PokeApi from "pokeapi-typescript";
+import { useLocalStorage } from "../../utils/use-local-storage";
 
 type Props = { resources: PokeApi.IApiResource<PokeApi.IPokemon>[] };
 
 export const PokéTable: React.FC<Props> = ({ resources }) => {
-  const [columns, setColumns] = useState<TableColumns>(defaultColumns);
+  const [columns, setColumns] = useLocalStorage<TableColumns>(
+    "tableColumns",
+    defaultColumns,
+  );
 
   function updateColumnVisibility(
     columnName: keyof typeof columns,
