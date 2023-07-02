@@ -28,18 +28,20 @@ export const PokéTable: React.FC<Props> = ({ resources }) => {
   return (
     <div className={styles.pokeTable}>
       <div className={styles.tableControls}>
-        {Object.entries(columns).map(([key, column]) => (
-          <label key={column.field}>
-            {column.displayName}
-            <Checkbox
-              checked={column.isVisible}
-              onChange={(event) =>
-                updateColumnVisibility(key, event.currentTarget.checked)
-              }
-              title={column.displayName}
-            />
-          </label>
-        ))}
+        {Object.entries(columns)
+          .filter(([_, column]) => !["name", "id"].includes(column.field))
+          .map(([key, column]) => (
+            <label key={column.field}>
+              {column.displayName}
+              <Checkbox
+                checked={column.isVisible}
+                onChange={(event) =>
+                  updateColumnVisibility(key, event.currentTarget.checked)
+                }
+                title={column.displayName}
+              />
+            </label>
+          ))}
       </div>
       <div className={styles.tableContainer}>
         <Table>
