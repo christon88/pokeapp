@@ -1,7 +1,7 @@
 import { TableRow } from "@mui/material";
 import { PokéCell } from "./poké-cell";
 import { TableColumns } from "./types";
-import { useGetPokemonByUrlQuery } from "../api";
+import { useGetPokemonByUrlQuery } from "../main-page/api";
 import * as PokeApi from "pokeapi-typescript";
 import { useNavigate } from "react-router";
 import styles from "./poké-table.module.scss";

@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import { MainPage } from "./main-page/main-page";
 import { PokemonCard } from "./pokemon-card/pokemon-card";
+import { PokéTable } from "./poké-table/poké-table";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <MainPage /> },
+  { path: "/", element: <PokéTable /> },
   { path: "/pokemon/:id", element: <PokemonCard /> },
 ]);

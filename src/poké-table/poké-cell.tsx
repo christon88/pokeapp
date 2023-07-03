@@ -1,11 +1,11 @@
 import { Fields } from "./types";
 import styles from "./poké-table.module.scss";
-import { assertExhaustive } from "../../utils/assert-exhaustive";
+import { assertExhaustive } from "../utils/assert-exhaustive";
 import { LinearProgress, TableCell } from "@mui/material";
-import { capitalize } from "../../utils/strings";
+import { capitalize } from "../utils/strings";
 import * as PokeApi from "pokeapi-typescript";
-import { isDefined } from "../../utils/is-defined";
-import loadingGif from "../../assets/loading.gif";
+import { isDefined } from "../utils/is-defined";
+import loadingGif from "../assets/loading.gif";
 import { Link } from "react-router-dom";
 type Props = {
   field: keyof Fields;
