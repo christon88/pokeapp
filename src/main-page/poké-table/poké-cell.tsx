@@ -6,6 +6,7 @@ import { capitalize } from "../../utils/strings";
 import * as PokeApi from "pokeapi-typescript";
 import { isDefined } from "../../utils/is-defined";
 import loadingGif from "../../assets/loading.gif";
+import { Link } from "react-router-dom";
 type Props = {
   field: keyof Fields;
   pokemon?: PokeApi.IPokemon;
@@ -21,7 +22,13 @@ export const PokéCell: React.FC<Props> = ({ field, pokemon, loading }) => {
   )
     return (
       <TableCell>
-        {pokemon ? capitalize(pokemon[field].toString()) : <LinearProgress />}
+        {pokemon ? (
+          <Link to={`/pokemon/${pokemon.id}`}>
+            {capitalize(pokemon[field].toString())}
+          </Link>
+        ) : (
+          <LinearProgress />
+        )}
       </TableCell>
     );
 

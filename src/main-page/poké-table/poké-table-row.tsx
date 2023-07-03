@@ -3,6 +3,8 @@ import { PokéCell } from "./poké-cell";
 import { TableColumns } from "./types";
 import { useGetPokemonByUrlQuery } from "../api";
 import * as PokeApi from "pokeapi-typescript";
+import { useNavigate } from "react-router";
+import styles from "./poké-table.module.scss";
 type Props = {
   columns: TableColumns;
   resource: PokeApi.IApiResource<PokeApi.IPokemon>;
@@ -10,9 +12,12 @@ type Props = {
 
 export const PokéTableRow: React.FC<Props> = ({ columns, resource }) => {
   const { data: pokemon, isLoading } = useGetPokemonByUrlQuery(resource.url);
-
+  const navigate = useNavigate();
   return (
-    <TableRow>
+    <TableRow
+      onClick={() => navigate(`/pokemon/${pokemon?.id}`)}
+      className={styles.tableRow}
+    >
       {Object.values(columns)
         .filter((column) => column.isVisible)
         .map((column) => (
