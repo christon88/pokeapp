@@ -5,6 +5,7 @@ import { LinearProgress, TableCell } from "@mui/material";
 import { capitalize } from "../../utils/strings";
 import * as PokeApi from "pokeapi-typescript";
 import { isDefined } from "../../utils/is-defined";
+import loadingGif from "../../assets/loading.gif";
 type Props = {
   field: keyof Fields;
   pokemon?: PokeApi.IPokemon;
@@ -28,7 +29,7 @@ export const PokéCell: React.FC<Props> = ({ field, pokemon, loading }) => {
     return (
       <TableCell>
         {loading || !isDefined(pokemon) ? (
-          <img className={styles.sprites} src={"/loading.gif"} />
+          <img className={styles.sprites} src={loadingGif} />
         ) : (
           <img className={styles.sprites} src={pokemon.sprites.front_default} />
         )}

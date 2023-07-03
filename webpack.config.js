@@ -44,12 +44,10 @@ module.exports = function (_, { mode }) {
     module: {
       rules: [
         {
-          test: [/\.(png|svg?)$/],
-          loader: "file-loader",
-          options: {
-            name: "static/media/[name].[hash:8].[ext]",
-          },
+          test: /\.(png|jpg|gif)$/i,
+          type: "asset/resource",
         },
+
         {
           test: /\.(ts)$/,
           use: [
@@ -73,6 +71,12 @@ module.exports = function (_, { mode }) {
               },
             },
           ],
+        },
+        {
+          test: /\.scss$/,
+          exclude: /\.module\.scss$/,
+          sideEffects: true,
+          use: getStyleLoaders({ sourceMap: true }).concat(sassLoaders),
         },
         {
           test: /\.module\.scss$/,
