@@ -72,7 +72,8 @@ export const PokéTable: React.FC<Props> = () => {
       </div>
       <TablePagination
         component="div"
-        count={100}
+        // TODO: Make this dynamic
+        count={1010}
         page={page}
         onPageChange={(_, page) => setPage(page)}
         rowsPerPage={pageSize}
