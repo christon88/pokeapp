@@ -26,6 +26,7 @@
 .typesCell {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .sprites {
@@ -35,4 +36,15 @@
 
 .tableRow {
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    scale: 1.05;
+  }
+}
+
+.typeChip {
+  padding: 4px;
+  width: 64px;
+  border-radius: 4px;
+  color: white;
 }
