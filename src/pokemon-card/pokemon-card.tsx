@@ -23,11 +23,11 @@ export const PokemonCard: React.FC<Props> = () => {
 
   const goToNext = () => {
     const next = parseInt(id || " 1") + 1;
-    navigate(`/pokemon/${next}`);
+    navigate(`/pokemon/${next}`, { replace: true });
   };
   const goToPrevious = () => {
     const next = parseInt(id || "1") - 1 || 1010;
-    navigate(`/pokemon/${next}`);
+    navigate(`/pokemon/${next}`, { replace: true });
   };
 
   const statList = [
