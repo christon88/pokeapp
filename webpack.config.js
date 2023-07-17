@@ -91,9 +91,6 @@ module.exports = function (_, { mode }) {
       ],
     },
     plugins: [
-      new webpack.ProvidePlugin({
-        Buffer: path.resolve(__dirname, "buffer.js"),
-      }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "src/index.html"),
       }),
