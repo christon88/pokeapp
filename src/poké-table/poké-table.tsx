@@ -56,7 +56,8 @@ export const PokéTable: React.FC<Props> = () => {
             ))}
         </div>
         <div className={styles.tableContainer}>
-          <Table>
+          {/** NOTE: Setting stickyHeader changes the opacity of the header. This is acceptable for now */}
+          <Table stickyHeader>
             <PokéTableHeader columns={columns} />
             <TableBody>
               {data?.results.filter(isDefined).map((resource) => (
